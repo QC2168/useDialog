@@ -25,9 +25,9 @@
       <template #footer>
         <span v-if="!slots.footer" class="dialog-footer">
           <el-button type="primary" @click="handleConfirm">{{
-            props.confirmName
+            props.confirmText
           }}</el-button>
-          <el-button @click="handleClose">{{ props.cancelName }}</el-button>
+          <el-button @click="handleClose">{{ props.cancelText }}</el-button>
         </span>
         <slot v-else name="footer"></slot>
       </template>
@@ -52,8 +52,8 @@ interface PropsType {
   modelValue?: boolean;
   hiddenFullBtn?: boolean;
   loading?: boolean;
-  confirmName?: string;
-  cancelName?: string;
+  confirmText?: string;
+  cancelText?: string;
 }
 const props = withDefaults(defineProps<PropsType>(), {
   headerTitle: "",
@@ -61,8 +61,8 @@ const props = withDefaults(defineProps<PropsType>(), {
   modelValue: false,
   hiddenFullBtn: false,
   loading: false,
-  confirmName: "确认",
-  cancelName: "关闭",
+  confirmText: "确认",
+  cancelText: "关闭",
 });
 const emits = defineEmits<{
   (e: "update:modelValue"): void;
