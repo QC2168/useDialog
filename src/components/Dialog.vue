@@ -9,7 +9,7 @@
     >
       <template #header>
         <div>
-          <span>{{ props.headerTitle }}</span>
+          <span class="dialog-title">{{ props.title }}</span>
         </div>
         <div class="btns">
           <el-icon v-if="isFullScreenBtn" @click="handleFullscreen"
@@ -46,7 +46,7 @@ const isFullScreenBtn = computed(() => {
   return true;
 });
 interface PropsType {
-  headerTitle?: string;
+  title?: string;
   width?: string | number;
   isDraggable?: boolean;
   modelValue?: boolean;
@@ -56,7 +56,7 @@ interface PropsType {
   cancelText?: string;
 }
 const props = withDefaults(defineProps<PropsType>(), {
-  headerTitle: "",
+  title: "",
   isDraggable: false,
   modelValue: false,
   hiddenFullBtn: false,
@@ -93,6 +93,11 @@ defineExpose({
   align-items: center;
   justify-content: space-between;
   margin: 0;
+}
+.dialog-title {
+  line-height: 24px;
+  font-size: 18px;
+  color: #303133;
 }
 .btns {
   display: flex;

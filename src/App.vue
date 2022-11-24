@@ -7,7 +7,7 @@
     >
     <DialogCmp
       ref="DialogCmpRef"
-      header-title="DialogCmp1"
+      title="DialogCmp1"
       :hiddenFullBtn="true"
       v-model="visible1"
       @confirm="handleConfirm"
@@ -18,7 +18,7 @@
     <DialogCmp2
       ref="DialogCmpRef2"
       draggable
-      header-title="DialogCmp2"
+      title="DialogCmp2"
       v-model="visible2"
     >
       <h3>DialogCmp2</h3>
@@ -26,7 +26,7 @@
     <DialogCmp3
       ref="DialogCmpRef3"
       draggable
-      header-title="DialogCmp3"
+      title="DialogCmp3"
       v-model="visible3"
       :fullscreen="true"
       :loading="loading3"
