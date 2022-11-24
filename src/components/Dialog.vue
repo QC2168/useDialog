@@ -3,7 +3,6 @@
     <el-dialog
       v-bind="attrs"
       :model-value="props.modelValue"
-      :width="props.width"
       :show-close="false"
       :fullscreen="attrs?.fullscreen ?? isFullscreen"
       :before-close="handleClose"
@@ -58,7 +57,6 @@ interface PropsType {
 }
 const props = withDefaults(defineProps<PropsType>(), {
   headerTitle: "",
-  width: "50%",
   isDraggable: false,
   modelValue: false,
   hiddenFullBtn: false,
