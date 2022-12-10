@@ -74,6 +74,12 @@ const handleFullscreen = () => {
   isFullscreen.value = !isFullscreen.value;
 };
 const handleClose = () => {
+  if (
+    Reflect.has(attrs, "before-close") &&
+    typeof attrs["before-close"] === "function"
+  ) {
+    attrs["before-close"]();
+  }
   emits("close");
   emits("update:modelValue");
 };
