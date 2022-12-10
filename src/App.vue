@@ -5,6 +5,8 @@
     <el-button @click="openDialog3"
       >打开DialogCmp3 (全屏&自定义页脚插槽)</el-button
     >
+    <el-button @click="openDialog4(MODE.ADD)">表单弹窗（新增）</el-button>
+    <el-button @click="openDialog4(MODE.EDIT)">表单弹窗（编辑）</el-button>
     <DialogCmp
       ref="DialogCmpRef"
       title="DialogCmp1"
@@ -43,6 +45,8 @@
         <el-button @click="closeDialog3">关闭</el-button>
       </template>
     </DialogCmp3>
+
+    <formDialog ref="formDialogRef" />
   </div>
 </template>
 <script setup lang="ts">
@@ -50,7 +54,10 @@ import useDialog from "./components/useDialog";
 import DialogCmp from "./components/Dialog.vue";
 import DialogCmp2 from "./components/Dialog.vue";
 import DialogCmp3 from "./components/Dialog.vue";
-import { ElMessage } from "element-plus";
+import formDialog from "./components/formDialog.vue";
+import { ElButton, ElMessage } from "element-plus";
+import { ref } from "vue";
+import { MODE } from "./components/types";
 const {
   visible: visible1,
   openDialog: openDialog1,
@@ -94,6 +101,12 @@ const handleClose = () => {
     type: "info",
   });
   closeDialog1();
+};
+
+const formDialogRef = ref<InstanceType<typeof formDialog>>();
+const openDialog4 = (mode: MODE) => {
+  if (!formDialogRef.value) return;
+  formDialogRef.value.openDialog(mode);
 };
 </script>
 <style lang="less" scoped>
