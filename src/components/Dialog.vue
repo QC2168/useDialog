@@ -45,6 +45,7 @@ const isFullScreenBtn = computed(() => {
   if (attrs?.fullscreen) return false;
   return true;
 });
+
 interface PropsType {
   title?: string;
   width?: string | number;
@@ -55,6 +56,7 @@ interface PropsType {
   confirmText?: string;
   cancelText?: string;
 }
+
 const props = withDefaults(defineProps<PropsType>(), {
   title: "",
   isDraggable: false,
@@ -64,11 +66,13 @@ const props = withDefaults(defineProps<PropsType>(), {
   confirmText: "确认",
   cancelText: "关闭",
 });
+
 const emits = defineEmits<{
   (e: "update:modelValue"): void;
   (e: "confirm"): void;
   (e: "close"): void;
 }>();
+
 const handleFullscreen = () => {
   if (attrs?.fullscreen) return;
   isFullscreen.value = !isFullscreen.value;
@@ -81,16 +85,15 @@ const handleClose = () => {
     attrs["before-close"]();
   }
   emits("close");
-  emits("update:modelValue");
 };
 const handleConfirm = () => {
   emits("confirm");
-  emits("update:modelValue");
 };
 defineExpose({
   isVisible: props.modelValue,
 });
 </script>
+
 <style lang="less" scoped>
 :deep(.el-dialog__header) {
   border-bottom: 1px solid #eee;

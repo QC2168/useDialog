@@ -20,6 +20,8 @@
       draggable
       title="DialogCmp2"
       v-model="visible2"
+      @confirm="closeDialog2"
+      @close="closeDialog2"
     >
       <h3>DialogCmp2</h3>
     </DialogCmp2>
@@ -30,6 +32,8 @@
       v-model="visible3"
       :fullscreen="true"
       :loading="loading3"
+      @confirm="openDialog3"
+      @close="closeDialog3"
     >
       <h3>DialogCmp3</h3>
       <template #footer>
@@ -47,18 +51,24 @@ import DialogCmp from "./components/Dialog.vue";
 import DialogCmp2 from "./components/Dialog.vue";
 import DialogCmp3 from "./components/Dialog.vue";
 import { ElMessage } from "element-plus";
-const [visible1, , { openDialog: openDialog1 }] = useDialog();
-const [visible2, , { openDialog: openDialog2 }] = useDialog();
-const [
-  visible3,
-  loading3,
-  {
-    openDialog: openDialog3,
-    closeDialog: closeDialog3,
-    openLoading: openLoading3,
-    closeLoading: closeLoading3,
-  },
-] = useDialog();
+const {
+  visible: visible1,
+  openDialog: openDialog1,
+  closeDialog: closeDialog1,
+} = useDialog();
+const {
+  visible: visible2,
+  openDialog: openDialog2,
+  closeDialog: closeDialog2,
+} = useDialog();
+const {
+  visible: visible3,
+  loading: loading3,
+  openDialog: openDialog3,
+  closeDialog: closeDialog3,
+  openLoading: openLoading3,
+  closeLoading: closeLoading3,
+} = useDialog();
 
 const showTimes = () => {
   let date = new Date();
@@ -71,18 +81,20 @@ const showTimes = () => {
   let curTime = `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`;
   alert(`${curTime}`);
 };
-const handleConfirm=()=>{
+const handleConfirm = () => {
   ElMessage({
-    message: '你点击了确定按钮',
-    type: 'success',
-  })
-}
-const handleClose=()=>{
+    message: "你点击了确定按钮",
+    type: "success",
+  });
+  closeDialog1();
+};
+const handleClose = () => {
   ElMessage({
-    message: '关闭了窗口',
-    type: 'info',
-  })
-}
+    message: "关闭了窗口",
+    type: "info",
+  });
+  closeDialog1();
+};
 </script>
 <style lang="less" scoped>
 .app {

@@ -1,25 +1,18 @@
-import { ref, type Ref } from "vue";
-interface DialogMethodsType {
-  openDialog: () => void;
-  closeDialog: () => void;
-  openLoading: () => void;
-  closeLoading: () => void;
-}
-type UseDialogReturnType = [
-  Ref<boolean>,
-  Ref<boolean>,
-  DialogMethodsType
-];
-export default function useDialog(): UseDialogReturnType {
+import { ref } from "vue";
+
+export default function useDialog() {
   const visible = ref(false);
   const loading = ref(false);
   const openDialog = () => (visible.value = true);
   const closeDialog = () => (visible.value = false);
   const openLoading = () => (loading.value = true);
   const closeLoading = () => (loading.value = false);
-  return [
+  return {
     visible,
     loading,
-    { openDialog, closeDialog, openLoading, closeLoading },
-  ];
+    openDialog,
+    closeDialog,
+    openLoading,
+    closeLoading,
+  };
 }
