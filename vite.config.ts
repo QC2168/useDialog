@@ -1,10 +1,7 @@
-import { ConfigEnv, defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-export default (mode: ConfigEnv) => {
-  const env = loadEnv(mode.mode, process.cwd());
-  return defineConfig({
-    plugins: [vue()],
-    base: mode.command === "serve" ? "./" : env.VITE_PUBLIC_PATH,
-  });
-};
+export default defineConfig({
+  plugins: [vue()],
+  base: process.env.NODE_ENV === "production" ? "/useDialog/" : "/",
+});
