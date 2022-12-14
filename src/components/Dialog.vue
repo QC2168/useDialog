@@ -48,7 +48,6 @@ const isFullScreenBtn = computed(() => {
 
 interface PropsType {
   title?: string;
-  width?: string | number;
   isDraggable?: boolean;
   modelValue?: boolean;
   hiddenFullBtn?: boolean;
