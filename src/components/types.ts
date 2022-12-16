@@ -1,4 +1,5 @@
 export enum MODE {
-  ADD,
-  EDIT,
+  ADD='add',
+  EDIT='edit',
+  READONLY='readonly',
 }
