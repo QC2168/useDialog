@@ -1,5 +1,5 @@
 import { FormInstance } from "element-plus";
-import { Ref, ref } from "vue";
+import { computed, Ref, ref } from "vue";
 import useDialogState from "./useDialogState";
 
 export enum MODE {
@@ -22,5 +22,12 @@ export default function useDialogFn(
     visible.value = true;
     formInstance.value?.resetFields();
   };
-  return { visible, mode, openDialog, closeDialog };
+
+  const modeText = computed(() => {
+    if (mode.value === 'add') return '添加';
+    if (mode.value === 'edit') return '编辑';
+    if (mode.value === 'readonly') return '详情';
+  });
+
+  return { visible, mode, openDialog, closeDialog, modeText };
 }
